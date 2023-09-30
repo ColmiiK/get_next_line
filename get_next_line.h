@@ -6,16 +6,16 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:51 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/09/30 14:01:21 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/09/30 14:09:11 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 
-// # ifndef BUFFER_SIZE
-// #  define BUFFER_SIZE 10
-// # endif
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 10
+# endif
 
 # include <stdio.h>
 # include <stdlib.h>

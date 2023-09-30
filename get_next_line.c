@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:57 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/09/30 14:05:03 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/09/30 14:09:15 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,13 @@ char	*get_next_line(int fd)
 	buffer = create_line(list);
 	return (buffer);
 }
-int main()
-{
-	int fd;
-	char *file;
+// int main()
+// {
+// 	int fd;
+// 	char *file;
 
-	system("leaks -q a.out");
-	file = "test.txt";
-	fd = open(file, O_RDONLY);
-	printf("%s\n", get_next_line(fd));
-}
+// 	system("leaks -q a.out");
+// 	file = "test.txt";
+// 	fd = open(file, O_RDONLY);
+// 	printf("%s\n", get_next_line(fd));
+// }

@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:59 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/09/30 13:43:50 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/09/30 13:49:01 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	copy_to_buffer(t_list *list, char *str)
 	int	i;
 	int	j;
 
+	j = 0;
 	while (list)
 	{
 		i = 0;

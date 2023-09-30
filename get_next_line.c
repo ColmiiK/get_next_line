@@ -6,13 +6,13 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/26 16:06:57 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/09/30 13:45:24 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/09/30 14:05:03 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*get_line(t_list *list)
+char	*create_line(t_list *list)
 {
 	int		len;
 	char	*next_str;
@@ -92,6 +92,16 @@ char	*get_next_line(int fd)
 	create_list(&list, fd);
 	if (!list)
 		return (0);
-	buffer = get_line(list);
-	
+	buffer = create_line(list);
+	return (buffer);
+}
+int main()
+{
+	int fd;
+	char *file;
+
+	system("leaks -q a.out");
+	file = "test.txt";
+	fd = open(file, O_RDONLY);
+	printf("%s\n", get_next_line(fd));
 }

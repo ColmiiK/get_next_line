@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:02 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/05 16:53:15 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/05 17:22:08 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,70 @@ char	*get_lines(char *text, int fd)
 	return (text);
 }
 
+char	*copy_text(char *text)
+{
+	char	*str;
+	int		i;
+
+	if (!text[i])
+		return (0);
+	while (text[i] && text[i] != '\n')
+		i++;
+	str = malloc(sizeof(char) * (i + 2));
+	if (!str)
+		return (0);
+	i = 0;
+	while (text[i] && text[i] != '\n')
+	{
+		str[i] = text[i];
+		i++;
+	}
+	if (text[i] && text[i] == '\n')
+	{
+		str[i] = '\n';
+		i++;
+	}
+	return (str);
+}
+
+char	*next(char *text)
+{
+	int		i;
+	int		j;
+	char	*temp;
+
+	i = 0;
+	while (text[i] && text[i] != '\n')
+		i++;
+	if (!text[i])
+	{
+		free (text);
+		return (0);
+	}
+	temp = malloc(sizeof(char) * (ft_strlen(text) - i + 1));
+	i++;
+	j = 0;
+	while (text[i])
+	{
+		temp[j] = text[i];
+		j++;
+		i++;
+	}
+	free (text);
+	return (temp);
+}
+
 char	*get_next_line(int fd)
 {
 	static char	*text;
 	char		*result;
 
 	text = get_lines(text, fd);
+	if (!text)
+		return (0);
+	result = copy_text(text);
+	text = next(text);
+	return (result);
 }
 
 int	main(void)

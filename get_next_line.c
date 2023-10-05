@@ -5,103 +5,120 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/26 16:06:57 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/09/30 14:09:15 by alvega-g         ###   ########.fr       */
+/*   Created: 2023/10/05 15:30:02 by alvega-g          #+#    #+#             */
+/*   Updated: 2023/10/05 16:53:15 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-char	*create_line(t_list *list)
-{
-	int		len;
-	char	*next_str;
-
-	len = len_to_newline(list);
-	next_str = malloc(len + 1);
-	if (!len)
-		return (0);
-	copy_to_buffer(list, next_str);
-	return (next_str);
-}
-
-void	add_to_list(t_list **list, char *buffer)
-{
-	t_list	*new;
-	t_list	*last;
-
-	last = ft_lstlast(*list);
-	new = malloc(sizeof(t_list));
-	if (!new)
-		return ;
-	if (!last)
-		*list = new;
-	else
-		last->next = new;
-	new->content = buffer;
-	new->next = 0;
-}
-
-int	search_newline(t_list *list)
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
-	while (list)
+	i = 0;
+	while (c > 255)
+		c -= 256;
+	while (s[i])
 	{
-		i = 0;
-		while (list->content[i] && i < BUFFER_SIZE)
-		{
-			if (list->content[i] == '\n')
-				return (i);
+		if (c == s[i])
+			return ((char *)&s[i]);
+		else
 			i++;
-		}
-		list = list->next;
 	}
+	if (c == '\0')
+		return ((char *)&s[i++]);
 	return (0);
 }
 
-void	create_list(t_list **list, int fd)
+size_t	ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	int		i;
+	int		j;
+	char	*joined;
+
+	i = 0;
+	j = 0;
+	joined = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!joined)
+		return (0);
+	while (s1[i])
+	{
+		joined[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+	{
+		joined[i] = s2[j];
+		i++;
+		j++;
+	}
+	joined[i] = 0;
+	return (joined);
+}
+
+char	*join(char *text, char *buffer)
+{
+	char	*tmp;
+
+	tmp = ft_strjoin(text, buffer);
+	free (buffer);
+	return (text);
+}
+
+char	*get_lines(char *text, int fd)
 {
 	char	*buffer;
-	int		read_characters;
+	int		i;
+	int		read_chars;
 
-	while (!search_newline(*list))
+	i = 0;
+	if (!text)
+		text = malloc(1);
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	read_chars = 1;
+	while (read_chars > 0)
 	{
-		buffer = malloc(BUFFER_SIZE + 1);
-		if (!buffer)
-			return ;
-		read_characters = read(fd, buffer, BUFFER_SIZE);
-		if (!read_characters)
+		read_chars = read(fd, buffer, BUFFER_SIZE);
+		if (read_chars == -1)
 		{
-			free(buffer);
-			return ;
+			free (buffer);
+			return (0);
 		}
-		buffer[read_characters] = 0;
-		add_to_list(list, buffer);
+		buffer[read_chars] = 0;
+		text = join(text, buffer);
+		if (ft_strchr(text, '\n'))
+			break ;
 	}
+	free (buffer);
+	return (text);
 }
 
 char	*get_next_line(int fd)
 {
-	static t_list	*list;
-	char			*buffer;
+	static char	*text;
+	char		*result;
 
-	list = 0;
-	if (!fd || BUFFER_SIZE <= 0 || read(fd, &buffer, 0) < 0)
-		return (0);
-	create_list(&list, fd);
-	if (!list)
-		return (0);
-	buffer = create_line(list);
-	return (buffer);
+	text = get_lines(text, fd);
 }
-// int main()
-// {
-// 	int fd;
-// 	char *file;
 
-// 	system("leaks -q a.out");
-// 	file = "test.txt";
-// 	fd = open(file, O_RDONLY);
-// 	printf("%s\n", get_next_line(fd));
-// }
+int	main(void)
+{
+	int fd;
+	char *file;
+
+	system("leaks -q a.out");
+	file = "test.txt";
+	fd = open(file, O_RDONLY);
+	printf("%s\n", get_next_line(fd));
+}

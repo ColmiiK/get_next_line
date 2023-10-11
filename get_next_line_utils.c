@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:24 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/05 15:54:28 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/11 16:31:20 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ char	*ft_strjoin(char *s1, char *s2)
 	int		j;
 	char	*joined;
 
-	i = 0;
-	j = 0;
+	i = -1;
+	j = -1;
 	if (!s1)
 	{
 		s1 = (char *)malloc(sizeof(char) + 1);
@@ -67,16 +67,10 @@ char	*ft_strjoin(char *s1, char *s2)
 	joined = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!joined)
 		return (0);
-	while (s1[i])
-	{
+	while (s1[++i])
 		joined[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
+	while (s2[++j])
 		joined[i + j] = s2[j];
-		j++;
-	}
 	joined[i + j] = 0;
 	free (s1);
 	return (joined);
@@ -100,4 +94,3 @@ char	*ft_strchr(const char *s, int c)
 		return ((char *)&s[i++]);
 	return (0);
 }
-

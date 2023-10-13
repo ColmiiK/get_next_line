@@ -12,6 +12,17 @@
 
 #include "get_next_line.h"
 
+void	*ft_calloc(size_t n, size_t size)
+{
+	void	*memory;
+
+	memory = (void *)malloc(n * size);
+	if (!memory)
+		return (0);
+	ft_bzero(memory, n * size);
+	return (memory);
+}
+
 size_t	ft_strlen(char *str)
 {
 	size_t	i;

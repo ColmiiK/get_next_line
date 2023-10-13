@@ -12,6 +12,21 @@
 
 #include "get_next_line.h"
 
+void	*ft_bzero(void *str, size_t n)
+{
+	unsigned int	i;
+	char			*temp;
+
+	i = 0;
+	temp = str;
+	while (i != n)
+	{
+		temp[i] = 0;
+		i++;
+	}
+	return (str);
+}
+
 static char	*prepare_for_next(char *text)
 {
 	int		i;
@@ -27,12 +42,13 @@ static char	*prepare_for_next(char *text)
 		free(text);
 		return (0);
 	}
-	new_text = (char *)malloc((ft_strlen(text) - i + 1) * sizeof(char));
+	new_text = ft_calloc((ft_strlen(text) - i + 1), sizeof(char));
 	if (!new_text)
 		return (0);
 	i++;
 	while (text[i])
 		new_text[j++] = text[i++];
+
 	free(text);
 	return (new_text);
 }
@@ -54,10 +70,11 @@ static char	*create_buffer(char *text, int fd)
 	char	*buffer;
 	int		chars_read;
 
-	buffer = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (0);
 	buffer[0] = 0;
+	chars_read = 1;
 	while (!ft_strchr(buffer, '\n') && chars_read > 0)
 	{
 		chars_read = read(fd, buffer, BUFFER_SIZE);

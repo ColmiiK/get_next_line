@@ -12,21 +12,6 @@
 
 #include "get_next_line.h"
 
-void	*ft_bzero(void *str, size_t n)
-{
-	unsigned int	i;
-	char			*temp;
-
-	i = 0;
-	temp = str;
-	while (i != n)
-	{
-		temp[i] = 0;
-		i++;
-	}
-	return (str);
-}
-
 static char	*prepare_for_next(char *text)
 {
 	int		i;

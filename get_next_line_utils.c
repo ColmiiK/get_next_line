@@ -15,11 +15,21 @@
 void	*ft_calloc(size_t n, size_t size)
 {
 	void	*memory;
+	unsigned int	i;
+	unsigned int total;
+	char			*temp;
 
 	memory = (void *)malloc(n * size);
 	if (!memory)
 		return (0);
-	ft_bzero(memory, n * size);
+	i = 0;
+	total = n * size;
+	temp = memory;
+	while (i != total)
+	{
+		temp[i] = 0;
+		i++;
+	}
 	return (memory);
 }
 

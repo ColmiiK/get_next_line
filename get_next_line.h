@@ -29,6 +29,5 @@ char	*ft_strjoin(char *s1, char *s2);
 char	*ft_substr(char *s, unsigned int start, size_t len);
 size_t	ft_strlen(char *str);
 void	*ft_calloc(size_t n, size_t size);
-void	*ft_bzero(void *str, size_t n);
 
 #endif

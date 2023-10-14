@@ -23,10 +23,7 @@ static char	*prepare_for_next(char *text)
 	while (text[i] && text[i] != '\n')
 		i++;
 	if (!text[i])
-	{
-		free(text);
-		return (0);
-	}
+		return(free(text), NULL);
 	new_text = ft_calloc((ft_strlen(text) - i + 1), sizeof(char));
 	if (!new_text)
 		return (0);
@@ -58,7 +55,6 @@ static char	*create_buffer(char *text, int fd)
 	buffer = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buffer)
 		return (0);
-	buffer[0] = 0;
 	chars_read = 1;
 	while (!ft_strchr(buffer, '\n') && chars_read > 0)
 	{

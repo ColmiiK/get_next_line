@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:24 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/11 16:31:20 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:54:57 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_calloc(size_t n, size_t size)
 {
-	void	*memory;
+	void			*memory;
 	unsigned int	i;
-	unsigned int total;
+	unsigned int	total;
 	char			*temp;
 
 	memory = (void *)malloc(n * size);

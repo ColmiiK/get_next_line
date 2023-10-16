@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:02 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/11 17:44:25 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:55:02 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,13 @@ static char	*prepare_for_next(char *text)
 	while (text[i] && text[i] != '\n')
 		i++;
 	if (!text[i])
-		return(free(text), NULL);
+		return (free(text), NULL);
 	new_text = ft_calloc((ft_strlen(text) - i + 1), sizeof(char));
 	if (!new_text)
 		return (0);
 	i++;
 	while (text[i])
 		new_text[j++] = text[i++];
-
 	free(text);
 	return (new_text);
 }

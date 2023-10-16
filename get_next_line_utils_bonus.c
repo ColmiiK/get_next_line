@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:59:07 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/16 10:59:07 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/16 11:54:25 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	*ft_calloc(size_t n, size_t size)
 {
-	void	*memory;
+	void			*memory;
 	unsigned int	i;
-	unsigned int total;
+	unsigned int	total;
 	char			*temp;
 
 	memory = (void *)malloc(n * size);
@@ -93,7 +93,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		joined[i + j] = s2[j];
 	joined[i + j] = 0;
-	free (s1);
+	free(s1);
 	return (joined);
 }
 

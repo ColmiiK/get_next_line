@@ -69,11 +69,6 @@ static char	*create_buffer(char *text, int fd)
 	return (text);
 }
 
-// void	check_leaks(void)
-// {
-// 	system("leaks -q a.out");
-// }
-
 char	*get_next_line(int fd)
 {
 	static char	*text;
@@ -81,7 +76,6 @@ char	*get_next_line(int fd)
 
 	if (fd < 0)
 		return (0);
-	// atexit(check_leaks);
 	text = create_buffer(text, fd);
 	if (!text)
 		return (0);

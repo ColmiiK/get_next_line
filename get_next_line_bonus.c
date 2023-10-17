@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/16 10:58:38 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/17 13:33:01 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/17 17:18:24 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,17 @@ char	*get_next_line(int fd)
 	static char	*text[4096];
 	char		*result;
 
-	if (fd < 0)
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (0);
 	text[fd] = create_buffer(text[fd], fd);
 	if (!text[fd])
-		return (0);
-	if (!*text[fd])
 		return (free(text[fd]), NULL);
 	result = copy_up_to_newline(text[fd]);
 	text[fd] = prepare_for_next(text[fd]);
+	if (*result == 0)
+	{
+		free(result);
+		return (0);
+	}
 	return (result);
 }

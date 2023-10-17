@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:38 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/17 16:30:39 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:39:20 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 5
+#  define BUFFER_SIZE 10
 # endif
 
 # include <fcntl.h>

@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:02 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/17 17:18:42 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/17 19:43:38 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static char	*prepare_for_next(char *text)
 
 	i = 0;
 	j = 0;
-	new_text = 0;
 	while (text[i] && text[i] != '\n')
 		i++;
 	if (!text[i])
@@ -32,7 +31,6 @@ static char	*prepare_for_next(char *text)
 	while (text[i])
 		new_text[j++] = text[i++];
 	free(text);
-	text = 0;
 	return (new_text);
 }
 
@@ -82,7 +80,7 @@ char	*get_next_line(int fd)
 	char		*result;
 
 	if (fd < 0 || BUFFER_SIZE < 0)
-		return (free(text), NULL);
+		return (0);
 	text = create_buffer(text, fd);
 	if (!text)
 		return (free(text), NULL);

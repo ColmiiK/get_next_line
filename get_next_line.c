@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:02 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/16 11:55:02 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:31:45 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,12 @@ static char	*create_buffer(char *text, int fd)
 	while (!ft_strchr(buffer, '\n') && chars_read > 0)
 	{
 		chars_read = read(fd, buffer, BUFFER_SIZE);
+		if (chars_read == -1)
+		{
+			free(text);
+			free(buffer);
+			return (0);
+		}
 		if (chars_read > 0)
 		{
 			buffer[chars_read] = 0;
@@ -73,11 +79,13 @@ char	*get_next_line(int fd)
 	static char	*text;
 	char		*result;
 
-	if (fd < 0)
-		return (0);
+	if (fd < 0 || BUFFER_SIZE < 0)
+		return (free(text), NULL);
 	text = create_buffer(text, fd);
 	if (!text)
 		return (0);
+	if (!*text)
+		return (free(text), NULL);
 	result = copy_up_to_newline(text);
 	text = prepare_for_next(text);
 	return (result);

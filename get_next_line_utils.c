@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:24 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/16 11:54:57 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/10/17 13:31:22 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ char	*ft_strjoin(char *s1, char *s2)
 			return (0);
 		s1[0] = 0;
 	}
-	joined = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	joined = (char *)malloc(sizeof(char) * (ft_strlen(s1)
+				+ ft_strlen(s2) + 1));
 	if (!joined)
 		return (0);
 	while (s1[++i])
@@ -93,7 +94,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++j])
 		joined[i + j] = s2[j];
 	joined[i + j] = 0;
-	free (s1);
+	free(s1);
 	return (joined);
 }
 

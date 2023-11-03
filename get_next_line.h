@@ -6,7 +6,7 @@
 /*   By: alvega-g <alvega-g@student.42malaga.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/05 15:30:38 by alvega-g          #+#    #+#             */
-/*   Updated: 2023/10/17 19:39:20 by alvega-g         ###   ########.fr       */
+/*   Updated: 2023/11/03 11:33:08 by alvega-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,14 @@
 # include <stdlib.h>
 # include <unistd.h>
 
+/**
+ * @brief Reads a line from a file descriptor and 
+ * 		returns it as a string.
+ * 
+ * @param fd The file descriptor to read from.
+ * @return char* A pointer to the string containing the line read
+ * 		from the file descriptor.
+ */
 char	*get_next_line(int fd);
 
 char	*ft_strchr(const char *s, int c);
